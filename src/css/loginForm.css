@@ -1,0 +1,52 @@
+body {
+    height: 100vh;
+    background-color: #f3e5d8;
+}
+
+.login-container {
+    background-color: #fff8e1; 
+    width: 100%;
+    max-width: 350px;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-inline: auto;
+    margin-top: 5%;
+}
+
+.login-header {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #5d4037; 
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 2px solid #8d6e63; 
+    border-radius: 6px;
+    background-color: #fff3e0; 
+}
+
+.login-btn {
+    width: 100%;
+    background-color: #5d4037;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #3e2723;
+}
+
+.book-icon {
+    font-size: 50px;
+    margin-bottom: 1rem;
+    color: #8d6e63;
+}
