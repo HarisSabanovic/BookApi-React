@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAuth } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 import '../css/loginForm.css';
 
 const LoginPage = () => {
@@ -7,9 +9,20 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const {login} = useAuth();
+  const navigate = useNavigate();
+
 
   const submitHandler = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+     
+    try {
+      await login({username, password});
+      navigate("/register");
+    } catch (error) {
+      setError("Inloggningen misslyckades. Kontrollera inmatning")
+    }
   }
   
   return (
