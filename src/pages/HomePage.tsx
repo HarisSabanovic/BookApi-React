@@ -7,7 +7,7 @@ const HomePage = () => {
 
   const searchBooks = async () => {
     try {
-      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyBm0cqyfBpxn59su38MwwSwO_jM6sU8j3g`);
+      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&key=${process.env.REACT_APP_API_KEY}`);
       const data = response.json();
       setBooks(data.items || []);
     } catch(error) {
