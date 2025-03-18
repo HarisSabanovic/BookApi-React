@@ -10,6 +10,7 @@ const Header = () => {
     <header>
         <ul>
             <li><NavLink to="/">Startsida</NavLink></li>
+            <li><NavLink to="/myreviews">Recensioner</NavLink></li>
             <li>
               {
                 !user ? <NavLink to="/login">Logga in</NavLink> : <button onClick={logout}>Logga ut</button>

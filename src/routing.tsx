@@ -4,6 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MyReviews from "./pages/MyReviews";
 
 const router = createBrowserRouter([
     {
@@ -15,16 +16,20 @@ const router = createBrowserRouter([
                 element: <HomePage />
             },
             {
+                path: "/myreviews",
+                element: (
+                    <ProtectedRoute>
+                        <MyReviews />
+                    </ProtectedRoute>
+                )
+            },
+            {
                 path: "/login",
                 element: <LoginPage />
             },
             {
                 path: "/register",
-                element: (
-                    <ProtectedRoute>
-                        <RegisterPage />
-                    </ProtectedRoute>
-                )
+                element: <RegisterPage/>
             }
         ]
     }
