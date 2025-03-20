@@ -50,3 +50,19 @@ body {
     margin-bottom: 1rem;
     color: #8d6e63;
 }
+
+.register-link {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.register-link a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

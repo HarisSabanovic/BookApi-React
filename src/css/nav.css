@@ -32,3 +32,13 @@ a:hover {
     background-color: #3e2723; 
     color: #f3e5d8; 
 }
+
+footer {
+    background-color: #3e2723;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
