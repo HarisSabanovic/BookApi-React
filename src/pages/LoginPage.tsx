@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/authContext';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import '../css/loginForm.css';
 
 const LoginPage = () => {
@@ -9,9 +10,16 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const {login} = useAuth();
+  const {login, user} = useAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("useEffect körs. user är:", user);
+
+    if(user) {
+      navigate("/myreviews");
+    }
+  }, [user])
 
   const submitHandler = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,6 +27,7 @@ const LoginPage = () => {
      
     try {
       await login({username, password});
+      console.log("Inloggning lyckades!"); 
       navigate("/register");
     } catch (error) {
       setError("Inloggningen misslyckades. Kontrollera inmatning")
@@ -34,6 +43,9 @@ const LoginPage = () => {
           <input type="password" placeholder="Lösenord" required value={password} onChange={(event) => setPassword(event.target.value)}/>
           <button type="submit" className="login-btn">Logga in</button>
       </form>
+      <p className="register-link">
+        Har du inget konto? <Link to="/register">Registrera dig här</Link>
+    </p>
     </div>
   )
 }
