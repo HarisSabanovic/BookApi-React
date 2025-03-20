@@ -19,8 +19,8 @@
     max-width: 500px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
-    max-height: 80vh; /* Behåller scroll när innehållet är långt */
-    position: relative; /* För att stängknappen ska positioneras inuti */
+    max-height: 80vh; 
+    position: relative; 
 }
 
 .popup-header {
@@ -73,7 +73,6 @@
     font-weight: bold;
 }
 
-/* Recensioner Header */
 h3 {
     font-size: 1.8em;
     margin-bottom: 10px;
@@ -81,7 +80,6 @@ h3 {
     font-weight: bold;
   }
   
-  /* Container för recensioner */
   .reviews {
     margin-bottom: 30px;
     padding: 10px;
@@ -90,7 +88,6 @@ h3 {
     border: 1px solid #ddd;
   }
   
-  /* Stil för varje recension */
   .review-item {
     margin-bottom: 15px;
     padding: 10px;
@@ -112,13 +109,11 @@ h3 {
     color: #888;
   }
   
-  /* Stil när inga recensioner finns */
   .reviews p {
     font-style: italic;
     color: #777;
   }
   
-  /* Container för att lägga till en recension */
   .add-review {
     margin-top: 20px;
     padding: 20px;
@@ -130,7 +125,6 @@ h3 {
     gap: 15px;
   }
   
-  /* Textarea för recension */
   .add-review textarea {
     width: 100%;
     height: 100px;
@@ -147,7 +141,6 @@ h3 {
     outline: none;
   }
   
-  /* Select för betyg */
   .add-review select {
     width: 100px;
     padding: 8px;
@@ -161,7 +154,6 @@ h3 {
     outline: none;
   }
   
-  /* Submit-knapp för recension */
   .add-review button {
     padding: 10px 15px;
     background-color: #4CAF50;
