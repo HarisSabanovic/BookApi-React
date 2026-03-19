@@ -84,7 +84,6 @@ const HomePage = () => {
         <Popup 
           book={selectedBook} 
           onClose={() => setSelectedBook(null)} 
-          reviews={reviews} 
         />
       )}
     </>
