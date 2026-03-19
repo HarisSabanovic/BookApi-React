@@ -8,32 +8,49 @@ interface Review {
   date: string;
   text: string;
   rating: number;
+  createdAt: string,
+  reviewText: string
 }
 
 interface PopupProps {
   book: any; 
   onClose: () => void;
-  reviews: Review[];
 }
 
-const Popup: React.FC<PopupProps> = ({ book, onClose, reviews }) => {
+const Popup: React.FC<PopupProps> = ({ book, onClose }) => {
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(1);
+  const [bookReviews, setBookReviews] = useState<Review[]>([]);
 
-   // Hämta användarens data från AuthContext
+
    const { user } = useAuth();
 
-    // Hämta recensioner från backend
+    const renderStars = (rating: number) => {
+    const fullStars = "★".repeat(rating);
+    const emptyStars = "☆".repeat(5 - rating);
+    return fullStars + emptyStars;
+  };
+
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString("sv-SE");
+  };
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
+        console.log("Hämtar recensioner för bok:", book?.id);
         const response = await fetch(`http://localhost:4000/reviews/${book.id}`);
         if (!response.ok) throw new Error("Kunde inte hämta recensioner");
         
-        const data = await response.json();
+        const data: Review[] = await response.json();
+        console.log("Recensioner från backend:", data);
+
+        setBookReviews(data);
       
       } catch (error) {
         console.error("Fel vid hämtning av recensioner:", error);
+        setBookReviews([]);
       }
     };
 
@@ -55,7 +72,8 @@ const Popup: React.FC<PopupProps> = ({ book, onClose, reviews }) => {
     }
 
     const backendReview = {
-      bookId: book.id, // Bokens unika ID
+      bookId: book.id,
+      bookTitle: book.volumeInfo.title,
       username: user.username,
       reviewText: reviewText,
       rating: rating,
@@ -80,9 +98,12 @@ const Popup: React.FC<PopupProps> = ({ book, onClose, reviews }) => {
       });
 
       if (response.ok) {
+        const newReview: Review = await response.json();
+
+        setBookReviews((prev) => [...prev, newReview]);
+
         setReviewText("");
         setRating(1);
-        onClose();
       } else {
         alert("Det gick inte att lägga till recensionen.");
       }
@@ -114,10 +135,13 @@ const Popup: React.FC<PopupProps> = ({ book, onClose, reviews }) => {
 
         <h3>Recensioner</h3>
         <div className="reviews">
-          {reviews.length ? (
-            reviews.map((review, index) => (
+          {bookReviews.length ? (
+            bookReviews.map((review, index) => (
               <div key={index} className="review-item">
-                <p><strong>{review.username}</strong> ({review.createdAt})</p>
+               <p>
+                  <strong>{review.username}</strong> ({formatDate(review.createdAt)})
+                </p>
+                <p>{renderStars(review.rating)}</p>
                 <p>{review.reviewText}</p>
               </div>
             ))
