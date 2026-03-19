@@ -8,20 +8,33 @@ const BookCard: React.FC<BookCardProps> = ({ book, onSelect }) => {
     const { title, authors, publishedDate, imageLinks } = book.volumeInfo;
 
     return (
-        <div 
-            key={book.id} 
-            onClick={() => onSelect(book)} >
-            {imageLinks && (
-                <img 
-                    src={imageLinks.thumbnail} 
-                    alt={title} 
-                    style={{ width: "100px", borderRadius: "4px" }}
-                />
-            )}
-            <div>
-                <h3 style={{ margin: 0 }}>{title}</h3>
-                <p><strong>Författare:</strong> {authors?.join(", ") || "Okänd författare"}</p>
-                <p><strong>Publiceringsår:</strong> {publishedDate || "Okänt år"}</p>
+        <div className="book-card" onClick={() => onSelect(book)}>
+            <div className="book-card-image-wrapper">
+                {imageLinks ? (
+                    <img
+                        src={imageLinks.thumbnail}
+                        alt={title}
+                        className="book-card-image"
+                    />
+                ) : (
+                    <div className="book-card-placeholder">
+                        Ingen bild
+                    </div>
+                )}
+            </div>
+
+            <div className="book-card-content">
+                <h3 className="book-card-title">{title}</h3>
+
+                <p className="book-card-author">
+                    <span>Författare:</span> {authors?.join(", ") || "Okänd författare"}
+                </p>
+
+                <p className="book-card-year">
+                    <span>Utgiven:</span> {publishedDate || "Okänt år"}
+                </p>
+
+                <button className="book-card-button">Visa mer</button>
             </div>
         </div>
     );
