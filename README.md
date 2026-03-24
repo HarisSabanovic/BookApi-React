@@ -1,54 +1,25 @@
-# React + TypeScript + Vite
+# Book App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Om projektet
+Det här är en bokapp jag byggt i React där man kan söka efter böcker, se mer info och skriva recensioner. Målet var att få bättre förståelse för hur React funkar i praktiken, med state, komponenter och API-anrop.
 
-Currently, two official plugins are available:
+## Hur appen funkar
+När man kommer in i appen ser man direkt en sökfunktion. När man skriver något hämtas böcker från ett API och visas i en lista. Man kan klicka på en bok och då öppnas en popup med mer information och recensioner. Det går även att skriva en recension, men bara om man är inloggad. Efter inloggning kan användaren också gå till en sida där man ser sina egna recensioner.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Hur jag byggde lösningen
+Jag har delat upp appen i flera komponenter, till exempel för sökfält, lista, popup, login och recensioner. Det gjorde koden mer strukturerad och lättare att jobba med.
 
-## Expanding the ESLint configuration
+Jag har använt `useState` och `useEffect` för att hantera state och hämta data.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+När man söker:
+- text sparas i state  
+- API-anrop görs  
+- resultat sparas i state  
+- UI uppdateras automatiskt  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Samma sak händer när man lägger till en recension.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Login och recensioner
+Man måste vara inloggad för att skriva recensioner. Efter login kan man skriva recensioner och se sina egna på en separat sida.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Av Haris
